@@ -3,8 +3,8 @@ if (!navigator.bluetooth) {
 }
 
 const MY_BLUETOOTH_NAME = 'LED';
-const SEND_SERVICE = 0xFFE0;
-const SEND_SERVICE_CHARACTERISTIC = 0xFFE1;
+const SEND_SERVICE = 0xFFE2;
+const SEND_SERVICE_CHARACTERISTIC = 0xFFE3;
 
 const controlButtonsListElements = document.querySelectorAll('.control-buttons > li');
 const connectButton = document.getElementById('connectButton');
