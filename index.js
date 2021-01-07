@@ -22,11 +22,7 @@ connectButton.addEventListener('pointerup', connectButtonPointerUpHandler);
 
 function connectButtonPointerUpHandler() {
   navigator.bluetooth.requestDevice({
-    filters:
-      [
-        { name: MY_BLUETOOTH_NAME },
-        { services: [SEND_SERVICE] },
-      ]
+    
   })
     .then(device => {
       myDevice = device;
