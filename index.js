@@ -2,9 +2,9 @@ if (!navigator.bluetooth) {
   alert('Sorry, your browser doesn\'t support Bluetooth API');
 }
 
-const MY_BLUETOOTH_NAME = 'LED';
-const SEND_SERVICE = '19B10000-E8F2-537E-4F6C-D104768A1214';
-const SEND_SERVICE_CHARACTERISTIC = 0xFFE1;
+const MY_BLUETOOTH_NAME = "LED";
+const SEND_SERVICE = "19B10000-E8F2-537E-4F6C-D104768A1214";
+const SEND_SERVICE_CHARACTERISTIC = "19B10001-E8F2-537E-4F6C-D104768A1214";
 
 const controlButtonsListElements = document.querySelectorAll('.control-buttons > li');
 const connectButton = document.getElementById('connectButton');
