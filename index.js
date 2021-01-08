@@ -16,9 +16,7 @@ for (i = 0; i < off.length; i++) {
 
 const MY_BLUETOOTH_NAME = 'LED';
 const SEND_SERVICE = '4832d3e4-50cb-11eb-ae93-0242ac130002';
-const SEND_SERVICE_CHARACTERISTIC = '4832d61e-50cb-11eb-ae93-0242ac130002
-
-';
+const SEND_SERVICE_CHARACTERISTIC = '4832d61e-50cb-11eb-ae93-0242ac130002';
 
 const controlButtonsListElements = document.querySelectorAll('.control-buttons > li');
 const connectButton = document.getElementById('connectButton');
