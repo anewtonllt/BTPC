@@ -24,7 +24,7 @@ const disconnectButton = document.getElementById('disconnectButton');
 const AllOffButton = document.getElementById('AllOff');
 const toggleRedLightButton = document.getElementById('btn1');
 const toggleBlueLightButton = document.getElementById('btn2');
-const toggleGreenLightButton = document.getElementById('bnt3');
+const toggleGreenLightButton = document.getElementById('btn3');
 const runBlinkLightButton = document.getElementById('btn4');
 
 let toggleLigthCharacteristic;
