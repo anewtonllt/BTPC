@@ -2,6 +2,18 @@ if (!navigator.bluetooth) {
   alert('Sorry, your browser doesn\'t support Bluetooth API');
 }
 
+var firstP = new Uint8Array(9);
+var off = new Uint8Array(9);
+
+var i;
+for (i = 0; i < firstP.length; i++) {
+  firstP[i] = 0;
+}
+var i;
+for (i = 0; i < off.length; i++) {
+  off[i] = 0;
+}
+
 const MY_BLUETOOTH_NAME = 'LED';
 const SEND_SERVICE = '4832d3e4-50cb-11eb-ae93-0242ac130002';
 const SEND_SERVICE_CHARACTERISTIC = '4832d61e-50cb-11eb-ae93-0242ac130002
@@ -11,11 +23,11 @@ const SEND_SERVICE_CHARACTERISTIC = '4832d61e-50cb-11eb-ae93-0242ac130002
 const controlButtonsListElements = document.querySelectorAll('.control-buttons > li');
 const connectButton = document.getElementById('connectButton');
 const disconnectButton = document.getElementById('disconnectButton');
-const lightOffButton = document.getElementById('lightOff');
-const toggleRedLightButton = document.getElementById('toggleRedLight');
-const toggleBlueLightButton = document.getElementById('toggleBlueLight');
-const toggleGreenLightButton = document.getElementById('toggleGreenLight');
-const runBlinkLightButton = document.getElementById('runBlinkLight');
+const AllOffButton = document.getElementById('AllOff');
+const toggleRedLightButton = document.getElementById('btn1');
+const toggleBlueLightButton = document.getElementById('btn2');
+const toggleGreenLightButton = document.getElementById('bnt3');
+const runBlinkLightButton = document.getElementById('btn4');
 
 let toggleLigthCharacteristic;
 let myDevice;
@@ -24,7 +36,7 @@ connectButton.addEventListener('pointerup', connectButtonPointerUpHandler);
 
 function connectButtonPointerUpHandler() {
   navigator.bluetooth.requestDevice({
-     filters:
+    filters:
       [
         { name: MY_BLUETOOTH_NAME },
         { services: [SEND_SERVICE] },
@@ -49,24 +61,25 @@ function connectButtonPointerUpHandler() {
 }
 
 function lightOffButtonClickHandler() {
-  return toggleLigthCharacteristic.writeValue(Uint8Array.of(0));
+  return toggleLigthCharacteristic.writeValue(off);
 }
 
 function toggleLightButtonClickHandler(event) {
   const code = Number(event.target.dataset.code);
 
   if (code === 1) {
-    toggleLigthCharacteristic.writeValue(Uint8Array.of(code));
-
+    toggleLigthCharacteristic.writeValue(firstP);
     return;
   }
-
-  toggleLigthCharacteristic.readValue()
-    .then(currentCode => {
-      const convertedCode = currentCode.getUint8(0);
-
-      toggleLigthCharacteristic.writeValue(Uint8Array.of(convertedCode === code ? 0 : code));
-    });
+  if (code === 2) {
+    toggleLigthCharacteristic.writeValue(off);
+    return;
+  }
+  var i;
+  for (i = 0; i < firstP.length; i++) {
+    firstP[i] = code;
+  }
+  toggleLigthCharacteristic.writeValue(firstP);
 }
 
 function toggleButtonsVisible() {
@@ -90,7 +103,7 @@ function disconnectButtonClickHandler() {
 
 function toggleItemsEventListeners(action) {
   disconnectButton[action]('click', disconnectButtonClickHandler);
-  lightOffButton[action]('click', lightOffButtonClickHandler);
+  AllOffButton[action]('click', lightOffButtonClickHandler);
   runBlinkLightButton[action]('click', toggleLightButtonClickHandler);
   toggleGreenLightButton[action]('click', toggleLightButtonClickHandler);
   toggleRedLightButton[action]('click', toggleLightButtonClickHandler);
