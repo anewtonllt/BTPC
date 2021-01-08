@@ -21,7 +21,7 @@ const SEND_SERVICE_CHARACTERISTIC = '4832d61e-50cb-11eb-ae93-0242ac130002';
 const controlButtonsListElements = document.querySelectorAll('.control-buttons > li');
 const connectButton = document.getElementById('connectButton');
 const disconnectButton = document.getElementById('disconnectButton');
-const AllOffButton = document.getElementById('AllOff');
+const lightOffButton = document.getElementById('AllOff');
 const toggleRedLightButton = document.getElementById('btn1');
 const toggleBlueLightButton = document.getElementById('btn2');
 const toggleGreenLightButton = document.getElementById('btn3');
@@ -101,7 +101,7 @@ function disconnectButtonClickHandler() {
 
 function toggleItemsEventListeners(action) {
   disconnectButton[action]('click', disconnectButtonClickHandler);
-  AllOffButton[action]('click', lightOffButtonClickHandler);
+  lightOffButton[action]('click', lightOffButtonClickHandler);
   runBlinkLightButton[action]('click', toggleLightButtonClickHandler);
   toggleGreenLightButton[action]('click', toggleLightButtonClickHandler);
   toggleRedLightButton[action]('click', toggleLightButtonClickHandler);
